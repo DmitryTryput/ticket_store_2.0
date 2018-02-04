@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+    "-//Hibernate/Hibernate Configuration DTD//EN"
+    "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+  <session-factory>
+    <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+    <property name="dialect">org.hibernate.dialect.MySQL57Dialect</property>
+    <property name="connection.url">jdbc:mysql://localhost:3306/ticket_store</property>
+    <property name="connection.username">root</property>
+    <property name="connection.password">root</property>
+    <property name="show_sql">true</property>
+    <property name="format_sql">true</property>
+
+
+    <mapping class="by.tryput.entity.Cinema"/>
+    <mapping class="by.tryput.entity.Movie"/>
+    <mapping class="by.tryput.entity.Person"/>
+    <mapping class="by.tryput.entity.CinemaHall"/>
+    <mapping class="by.tryput.entity.Message"/>
+    <mapping class="by.tryput.entity.Comment"/>
+    <mapping class="by.tryput.entity.Review"/>
+    <mapping class="by.tryput.entity.User"/>
+    <mapping class="by.tryput.entity.Seance"/>
+    <mapping class="by.tryput.entity.Ticket"/>
+
+
+
+  </session-factory>
+</hibernate-configuration>

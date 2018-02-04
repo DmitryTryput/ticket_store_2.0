@@ -3,4 +3,6 @@
 /web/target/
 /service/target/
 *.iml
+/database/target/
 
+log4j.log*
