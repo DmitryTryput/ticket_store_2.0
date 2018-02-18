@@ -3,12 +3,14 @@ package by.tryput.entity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.math.BigDecimal;
@@ -21,6 +23,7 @@ import java.util.Set;
 @NoArgsConstructor
 @Entity
 @Table(name = "users")
+@ToString(callSuper = true)
 public class User extends IdentifiableEntity {
 
     @Column(name = "email", nullable = false,
@@ -43,7 +46,7 @@ public class User extends IdentifiableEntity {
     @OneToMany(mappedBy = "user")
     private Set<Ticket> tickets = new HashSet<>();
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
     private Set<Message> messages = new HashSet<>();
 
 }

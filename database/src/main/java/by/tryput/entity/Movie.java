@@ -3,6 +3,7 @@ package by.tryput.entity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 
 import javax.persistence.CollectionTable;
@@ -11,13 +12,13 @@ import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -27,6 +28,7 @@ import java.util.Set;
 @NoArgsConstructor
 @Entity
 @Table(name = "movies")
+@ToString(callSuper = true)
 public class Movie extends IdentifiableEntity {
 
 
@@ -36,15 +38,16 @@ public class Movie extends IdentifiableEntity {
     @Column(name = "title", nullable = false)
     private String title;
 
-    @Column(name = "create_date", nullable = false)
-    private LocalDate createDate;
+    @Column(name = "create_year", nullable = false)
+    private int createYear;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "country", nullable = false)
     private Country country;
 
+
     @Enumerated(EnumType.STRING)
-    @ElementCollection(targetClass = Genre.class)
+    @ElementCollection(targetClass = Genre.class,fetch = FetchType.EAGER)
     @CollectionTable(name = "movies_genres",
             joinColumns = @JoinColumn(name = "movie_id"))
     @Column(name = "genre", unique = true)

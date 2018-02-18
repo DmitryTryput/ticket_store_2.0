@@ -3,7 +3,9 @@ package by.tryput.entity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -22,6 +24,7 @@ import java.util.Set;
 @NoArgsConstructor
 @Entity
 @Table(name = "seances")
+@ToString(callSuper = true)
 public class Seance extends IdentifiableEntity {
 
     @ManyToOne
@@ -43,5 +46,4 @@ public class Seance extends IdentifiableEntity {
 
     @OneToMany(mappedBy = "seance")
     private Set<Ticket> rowSeatTickets = new HashSet<>();
-
 }

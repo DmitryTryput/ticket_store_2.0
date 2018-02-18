@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -23,6 +24,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Table(name = "message")
 @Inheritance(strategy = InheritanceType.JOINED)
+@ToString(callSuper = true)
 public abstract class Message extends IdentifiableEntity {
 
     @ManyToOne

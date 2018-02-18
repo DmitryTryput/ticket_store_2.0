@@ -25,4 +25,8 @@ public enum Genre {
         this.name = name;
     }
 
+    public String getName() {
+        return name;
+    }
+
 }

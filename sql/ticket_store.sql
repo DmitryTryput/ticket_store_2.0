@@ -1,7 +1,5 @@
 CREATE DATABASE ticket_store;
 
-DROP DATABASE ticket_store;
-
 
 USE ticket_store;
 
@@ -19,15 +17,15 @@ CREATE TABLE persons (
   country       VARCHAR(20) NOT NULL,
   image_address VARCHAR(55),
   date_of_birth DATE,
-  PRIMARY KEY (id),
-  UNIQUE (first_name, last_name)
+  UNIQUE (first_name, last_name),
+  PRIMARY KEY (id)
 );
 
 CREATE TABLE movies (
   id            BIGINT AUTO_INCREMENT,
   title         VARCHAR(40) NOT NULL,
   image_address VARCHAR(55),
-  create_date   DATE        NOT NULL,
+  create_year   TINYBLOB    NOT NULL,
   country       VARCHAR(20) NOT NULL,
   director_id   BIGINT      NOT NULL,
   PRIMARY KEY (id)
@@ -35,7 +33,7 @@ CREATE TABLE movies (
 
 CREATE TABLE movies_genres (
   movie_id BIGINT,
-  genre    VARCHAR(15),
+  genre    VARCHAR(25),
   PRIMARY KEY (movie_id, genre),
   FOREIGN KEY (movie_id) REFERENCES movies (id)
 );
@@ -84,7 +82,7 @@ CREATE TABLE message (
 
 CREATE TABLE reviews (
   name       VARCHAR(55),
-  text       TEXT,
+  text       VARCHAR(1000),
   message_id BIGINT,
   FOREIGN KEY (message_id) REFERENCES message (id)
 );
@@ -113,7 +111,7 @@ CREATE TABLE tickets (
   seance_id    BIGINT NOT NULL,
   row          INT,
   seat         INT,
-  is_purchased TINYINT(1) DEFAULT 0,
+  is_purchased BIT(1) DEFAULT 0,
   user_id      BIGINT,
   PRIMARY KEY (id),
   FOREIGN KEY (seance_id) REFERENCES seances (id),

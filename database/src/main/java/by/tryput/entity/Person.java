@@ -3,7 +3,6 @@ package by.tryput.entity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
 import javax.persistence.Column;
 import javax.persistence.Embedded;
@@ -13,6 +12,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
@@ -21,7 +22,6 @@ import java.util.Set;
 @Setter
 @NoArgsConstructor
 @Entity
-@ToString(callSuper = true)
 @Table(name = "persons")
 public class Person extends IdentifiableEntity {
 
