@@ -15,5 +15,10 @@
 <c:forEach var="page" begin="1" end="${requestScope.pages}" step="1">
     <a href="${pageContext.request.contextPath}/result?page=${page}">${page}</a>
 </c:forEach>
+
+<form action="${pageContext.request.contextPath}/start" method="get">
+    <button type="submit">Назад</button>
+</form>
+
 </body>
 </html>
