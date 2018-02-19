@@ -46,7 +46,6 @@ public class TestMovies {
     @Test
     public void testFindByGenre() {
         Page<Movie> byGenres = movieRepository.findByGenres(Genre.ACTION, new PageRequest(1, 5));
-        byGenres.forEach(System.out:: println);
+        byGenres.forEach(System.out::println);
     }
-
 }

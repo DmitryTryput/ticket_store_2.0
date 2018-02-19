@@ -9,6 +9,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
+
 import javax.transaction.Transactional;
 
 import java.util.concurrent.atomic.AtomicInteger;
@@ -26,7 +27,7 @@ public class TestCinemaRepository {
     private CinemaRepository cinemaRepository;
 
     @Before
-    public void addCinema(){
+    public void addCinema() {
         Cinema cinema = new Cinema();
         cinema.setTitle("Cinema");
         cinemaRepository.save(cinema);

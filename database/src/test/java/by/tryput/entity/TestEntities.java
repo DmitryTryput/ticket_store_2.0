@@ -53,7 +53,6 @@ public class TestEntities {
     private CommentRepository commentRepository;
 
 
-
     @Before
     public void initDb() {
 

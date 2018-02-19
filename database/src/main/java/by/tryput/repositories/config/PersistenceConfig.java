@@ -1,7 +1,5 @@
 package by.tryput.repositories.config;
 
-import by.tryput.repositories.custom.MovieRepositoryCustom;
-import by.tryput.repositories.custom.MovieRepositoryCustomImpl;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -81,8 +79,4 @@ public class PersistenceConfig {
         return transactionManager;
     }
 
-    @Bean
-    public MovieRepositoryCustom movieRepositoryCustomImpl(EntityManagerFactory entityManagerFactory) {
-        return new MovieRepositoryCustomImpl(entityManagerFactory);
-    }
 }

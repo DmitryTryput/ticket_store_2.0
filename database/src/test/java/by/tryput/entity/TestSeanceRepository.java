@@ -19,12 +19,6 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.Month;
 
-
-
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.junit.Assert.assertThat;
-
-
 @Transactional
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes = PersistenceConfig.class)

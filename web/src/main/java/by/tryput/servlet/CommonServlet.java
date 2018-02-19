@@ -1,7 +1,7 @@
 package by.tryput.servlet;
 
-import by.tryput.CommonService;
-import by.tryput.entity.Person;
+import by.tryput.services.CommonService;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,13 +13,17 @@ import java.io.IOException;
 
 @WebServlet("/start")
 public class CommonServlet extends HttpServlet {
+
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Person person = new CommonService().getPerson();
-        req.setAttribute("person", person);
+        AnnotationConfigApplicationContext context = InitServlet.getContext();
+        CommonService service = context.getBean(CommonService.class);
+        req.setAttribute("countries", service.getAllCountries());
         getServletContext()
-                .getRequestDispatcher("/WEB-INF/jsp/first.jsp")
+                .getRequestDispatcher("/WEB-INF/jsp/start-filter.jsp")
                 .forward(req, resp);
     }
+
 
 }
