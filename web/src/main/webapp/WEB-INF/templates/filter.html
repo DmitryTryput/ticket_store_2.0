@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <title>Start filter</title>
+</head>
+<body>
+<form th:action="@{/filter}" method="post">
+
+
+    <div class="form-group">
+        <label for="title" >Название фильма:</label>
+        <input th:text="${movie.title}" class="form-control" id="title" name = "title" >
+    </div>
+
+    <div class="form-group">
+        <label for="createYear" >Год:</label>
+        <input th:number="${movie.createYear}" class="form-control" id="createYear" name = "createYear">
+    </div>
+
+
+    <div class="form-group">
+        <label for="country" >Страна:</label>
+        <select id="country" class="form-control" name = "country">
+           <option></option>
+            <option th:each="country : ${countries}"
+                    th:text="${country.getName()}"
+                    th:value="${country}" ></option>
+        </select>
+    </div>
+    <button class="btn btn-success">Поиск</button>
+</form>
+
+<p th:each="searchMovie : ${movies}" th:text="${searchMovie.title} + ' ' +  ${searchMovie.createYear}
+       + ' ' +  ${searchMovie.country} + ' ' +  ${searchMovie.director.getFullName().getFirstName()}
+        + ' ' +  ${searchMovie.director.getFullName().getLastName()}"></p>
+
+<a th:each=" page : ${#numbers.sequence(1,pages,1)}"
+   th:href="@{/filter(page=${page})}" th:text="${page} + ' '"> page </a>
+</body>
+</html>

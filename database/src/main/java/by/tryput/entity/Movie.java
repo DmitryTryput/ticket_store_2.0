@@ -39,7 +39,7 @@ public class Movie extends IdentifiableEntity {
     private String title;
 
     @Column(name = "create_year", nullable = false)
-    private int createYear;
+    private Integer createYear;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "country", nullable = false)
@@ -47,7 +47,7 @@ public class Movie extends IdentifiableEntity {
 
 
     @Enumerated(EnumType.STRING)
-    @ElementCollection(targetClass = Genre.class,fetch = FetchType.EAGER)
+    @ElementCollection(targetClass = Genre.class, fetch = FetchType.EAGER)
     @CollectionTable(name = "movies_genres",
             joinColumns = @JoinColumn(name = "movie_id"))
     @Column(name = "genre", unique = true)

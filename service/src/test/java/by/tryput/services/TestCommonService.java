@@ -1,7 +1,7 @@
 package by.tryput.services;
 
 
-import by.tryput.config.ServicesConfig;
+import by.tryput.config.ServiceConfig;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +13,7 @@ import javax.transaction.Transactional;
 
 @Transactional
 @RunWith(SpringRunner.class)
-@ContextConfiguration(classes = ServicesConfig.class)
+@ContextConfiguration(classes = ServiceConfig.class)
 public class TestCommonService {
 
     @Autowired

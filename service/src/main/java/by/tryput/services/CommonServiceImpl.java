@@ -1,7 +1,6 @@
 package by.tryput.services;
 
 import by.tryput.entity.Country;
-import by.tryput.entity.Genre;
 import by.tryput.entity.Movie;
 import by.tryput.repositories.MovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
