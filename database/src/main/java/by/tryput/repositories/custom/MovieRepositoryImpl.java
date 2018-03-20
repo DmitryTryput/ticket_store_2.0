@@ -1,6 +1,7 @@
 package by.tryput.repositories.custom;
 
 import by.tryput.entity.Movie;
+import by.tryput.entity.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -41,18 +42,26 @@ public class MovieRepositoryImpl implements MovieRepositoryCustom {
         TypedQuery<Long> countElements = entityManager.createQuery(pageCount + join, Long.class);
         TypedQuery<Long> countElementsTypedQuery = setParameters(countElements, filter);
         long elements = countElementsTypedQuery.getSingleResult();
-        System.out.println(elements);
         int elementsOnPage = pagination.get("elements");
-        System.out.println(elementsOnPage);
         long pages = elements % elementsOnPage == 0 ? elements / elementsOnPage
                 : elements / elementsOnPage + 1;
-        System.out.println(pages);
         TypedQuery<Movie> query = entityManager.createQuery(startQuery + join, Movie.class);
         TypedQuery<Movie> movieTypedQuery = setParameters(query, filter);
         List<Movie> resultList = movieTypedQuery.setFirstResult((pagination.get("page") - 1) * pagination.get("elements"))
                 .setMaxResults(pagination.get("elements")).getResultList();
         result.put(pages, resultList);
         return result;
+    }
+
+    @Override
+    public Movie findById(Long id) {
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+
+        return entityManager.createQuery(
+                "select m from Movie m left join fetch  m.actors a where m.id =:id", Movie.class)
+                .setParameter("id", id)
+                .getResultList()
+                .get(0);
     }
 
     private <T> TypedQuery<T> setParameters(TypedQuery<T> query, Map<String, Object> parameters) {

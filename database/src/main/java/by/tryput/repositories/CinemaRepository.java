@@ -2,12 +2,14 @@ package by.tryput.repositories;
 
 
 import by.tryput.entity.Cinema;
+import by.tryput.repositories.custom.CinemaRepositoryCustom;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
-public interface CinemaRepository extends CrudRepository<Cinema, Long> {
+
+public interface CinemaRepository extends CrudRepository<Cinema, Long>, CinemaRepositoryCustom {
 
     Cinema findByTitle(String title);
 

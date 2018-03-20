@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <title>Movie</title>
+</head>
+<body>
+<div th:insert="~{header :: adm-head}"></div>
+<div th:insert="~{header :: head}"></div>
+
+
+<label>Название</label>
+<p th:text="${movie.title}"></p>
+<label>Страна</label>
+<p th:text="${movie.country}"></p>
+<label>Год выхода</label>
+<p th:text="${movie.createYear}"></p>
+<label>Жанры</label>
+<p  th:each="genre : ${movie.genres}"  th:text="${genre.name}"></p>
+
+<label>Режесер</label>
+<p th:text="${movie.director.fullName.getFullName()}"></p>
+<label>Актеры</label>
+<section th:each="actorMovie : ${movie.getActors()}">
+    <p th:text="${actorMovie.fullName.getFullName()}"></p>
+</section>
+</body>
+</html>

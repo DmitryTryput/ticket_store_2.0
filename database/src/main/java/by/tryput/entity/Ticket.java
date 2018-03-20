@@ -10,6 +10,8 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Version;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -35,4 +37,7 @@ public class Ticket extends IdentifiableEntity {
     @JoinColumn(name = "user_id")
     private User user;
 
+    @Version
+    @Column(name = "version")
+    private LocalDateTime version;
 }

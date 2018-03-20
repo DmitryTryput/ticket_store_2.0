@@ -1,8 +1,10 @@
 package by.tryput.initializers;
 
 
+import by.tryput.config.SecurityConfig;
 import by.tryput.config.ServiceConfig;
 import by.tryput.config.WebConfig;
+import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 
@@ -10,7 +12,7 @@ public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServlet
 
     @Override
     protected Class<?>[] getRootConfigClasses() {
-        return new Class[] {ServiceConfig.class};
+        return new Class[] {ServiceConfig.class, SecurityConfig.class};
     }
 
     @Override
@@ -22,4 +24,6 @@ public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServlet
     protected String[] getServletMappings() {
         return new String[] {"/"};
     }
+
+
 }

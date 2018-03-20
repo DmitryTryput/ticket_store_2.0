@@ -60,9 +60,10 @@ CREATE TABLE cinema_halls (
 CREATE TABLE users (
   id            BIGINT AUTO_INCREMENT,
   email         VARCHAR(40) UNIQUE NOT NULL,
+  username      VARCHAR(50) UNIQUE NOT NULL,
   first_name    VARCHAR(40)        NOT NULL,
   last_name     VARCHAR(40)        NOT NULL,
-  user_password VARCHAR(40)        NOT NULL,
+  user_password VARCHAR(100)        NOT NULL,
   user_value    DECIMAL(10, 2),
   role          VARCHAR(15)        NOT NULL,
   PRIMARY KEY (id)
@@ -113,6 +114,7 @@ CREATE TABLE tickets (
   seat         INT,
   is_purchased BIT(1) DEFAULT 0,
   user_id      BIGINT,
+  version DATETIME,
   PRIMARY KEY (id),
   FOREIGN KEY (seance_id) REFERENCES seances (id),
   FOREIGN KEY (user_id) REFERENCES users (id)

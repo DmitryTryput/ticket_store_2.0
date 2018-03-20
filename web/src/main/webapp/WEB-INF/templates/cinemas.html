@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <title>Cinemas</title>
+</head>
+<body>
+<div th:insert="~{header :: adm-head}"></div>
+<div th:insert="~{header :: head}"></div>
+
+<section th:each="cinema : ${allCinemas}">
+
+    <p th:text="${cinema.getTitle()}"></p>
+    <ul>
+        <li th:each="hall: ${cinema.halls}" th:text="${hall.getTitle()}"></li>
+    </ul>
+</section>
+
+</body>
+</html>

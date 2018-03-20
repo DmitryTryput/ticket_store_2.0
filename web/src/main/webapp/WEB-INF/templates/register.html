@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <title>Registration</title>
+</head>
+<body>
+<form th:action="@{/login/registration}" method="post" th:object="${user}">
+    <div class="form-group">
+        <label for="username">Username: </label>
+        <input class="form-control" type="text" name="user" id="username" th:field="*{username}"><br>
+        <label for="password">Password: </label>
+        <input class="form-control" type="password" name="pass" id="password" th:field="*{password}"><br>
+        <label for="confirm_password">Confirm password: </label>
+        <input class="form-control" type="password" name="pass" id="confirm_password" th:field="*{confirmPassword}"><br>
+        <label for="email">Email: </label>
+        <input class="form-control" type="email" name="email" id="email" th:field="*{email}"><br>
+        <label for="first_name">First name: </label>
+        <input class="form-control" type="text" name="first_name" id="first_name" th:field="*{firstName}"><br>
+        <label for="last_name">Last name: </label>
+        <input class="form-control" type="text" name="last_name" id="last_name" th:field="*{lastName}"><br>
+        <button class="btn btn-success" type="submit">Registration</button>
+    </div>
+</form>
+    <a class="btn btn-success" type="button" th:href="@{/login}">Back</a>
+</body>
+</html>

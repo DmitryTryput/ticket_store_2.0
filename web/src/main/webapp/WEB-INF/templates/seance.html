@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <title>Seance</title>
+</head>
+<body>
+<div th:insert="~{header :: adm-head}"></div>
+<div th:insert="~{header :: head}"></div>
+<label>Кинотеатр</label>
+<p th:text="${seance.cinemaHall.cinema.title}"></p>
+<label>Зал</label>
+<p th:text="${seance.cinemaHall.title}"></p>
+<label>Фильм</label>
+<p th:text="${seance.movie.title}"></p>
+<label>Дата</label>
+<p th:text="${seance.seanceDate}"></p>
+<label>Время</label>
+<p th:text="${seance.seanceTime}"></p>
+<label>Цена</label>
+<p th:text="${seance.price}"></p>
+<form th:action="@{|/seances/${seance.id}|}" method="post" th:object="${ticketsId}">
+
+    <label>Места:</label>
+<table>
+    <tr class="form-group" th:each="element : ${tickets}">
+        <td th:each="seats : ${element.value}" >
+            <p  th:if="${seats.isPurchased()}">
+        <input   disabled type="checkbox" th:value="${seats.id}" th:field="*{ticketsId}">
+                </p>
+            <p th:unless="${seats.isPurchased()}" >
+        <input  type="checkbox" th:value="${seats.id}" th:field="*{ticketsId}">
+                </p>
+        </td>
+    </tr>
+</table>
+    <button class="btn btn-success">Сохранить</button>
+</form>
+
+</body>
+</html>

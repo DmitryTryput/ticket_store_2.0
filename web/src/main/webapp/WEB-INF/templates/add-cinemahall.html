@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <title>Add Cinemahall</title>
+</head>
+<body>
+<div th:insert="~{header :: adm-head}"></div>
+<div th:insert="~{header :: head}"></div>
+
+<form th:action="@{/add-cinemahall}" method="post" th:object="${cinemaHall}">
+    <div class="form-group">
+        <label for="cinema">Кинотеатр:</label>
+        <select id="cinema" class="form-control" th:field="*{cinema.id}">
+            <option  th:each="cinema : ${allCinemas}"
+                    th:text="${cinema.getTitle()}"
+                    th:value="${cinema.getId()}"
+                      >
+            </option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="title">Название зала:</label>
+        <input required th:text="${cinemaHall.title}" class="form-control" id="title" th:field="*{title}">
+    </div>
+    <div class="form-group">
+        <label for="rows">Количество рядов:</label>
+        <input required th:number="${cinemaHall.rows}" class="form-control" id="rows" th:field="*{rows}">
+    </div>
+    <div class="form-group">
+        <label for="seats">Количество мест:</label>
+        <input th:number="${cinemaHall.seats}" class="form-control" id="seats" th:field="*{seats}">
+    </div>
+    <button class="btn btn-success">Сохранить</button>
+</form>
+</body>
+</html>

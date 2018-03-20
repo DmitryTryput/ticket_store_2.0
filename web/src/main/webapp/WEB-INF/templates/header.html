@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="UTF-8">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <title>Header</title>
+</head>
+<body>
+
+<div th:fragment="head">
+<table>
+    <tr>
+        <th><form th:action="@{/cinemas}" method="get" id="cinemas">
+            <button class="btn btn-success">Cinemas</button>
+        </form></th>
+        <th><form th:action="@{/movies}" method="get" id="movies">
+            <button class="btn btn-success">Movies</button>
+        </form></th>
+        <th><form th:action="@{/persons}" method="get" id="persons">
+            <button class="btn btn-success">Persons</button>
+        </form></th>
+        <th><form th:action="@{/seances}" method="get" id="seances">
+            <button class="btn btn-success">Seances</button>
+        </form></th>
+        <th><form th:action="@{/logout}" method="post" id="logout">
+            <button class="btn btn-success">Logout</button>
+        </form></th>
+    </tr>
+</table>
+</div>
+
+<div sec:authorize="hasAnyAuthority('ADMINISTRATOR')" th:fragment="adm-head"  >
+    <table>
+        <tr>
+            <th><form th:action="@{/add-cinema}" method="get" id="add-cinemas">
+                <button class="btn btn-success">Add cinema</button>
+            </form></th>
+            <th><form th:action="@{/add-cinemahall}" method="get" id="add-cinemahall">
+                <button class="btn btn-success">Add cinemahall</button>
+            </form></th>
+            <th><form th:action="@{/add-person}" method="get" id="add-person">
+                <button class="btn btn-success">Add person</button>
+            </form></th>
+            <th><form th:action="@{/add-movie}" method="get" id="add-movie">
+                <button class="btn btn-success">Add movie</button>
+            </form></th>
+            <th><form th:action="@{/add-seance}" method="get" id="add-seance">
+                <button class="btn btn-success">Add seance</button>
+            </form></th>
+        </tr>
+    </table>
+</div>
+
+
+
+</body>
+</html>

@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.validator.constraints.NotEmpty;
 
 
 import javax.persistence.CollectionTable;
@@ -19,6 +20,9 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -28,7 +32,7 @@ import java.util.Set;
 @NoArgsConstructor
 @Entity
 @Table(name = "movies")
-@ToString(callSuper = true)
+@ToString(callSuper = true, exclude = "seances")
 public class Movie extends IdentifiableEntity {
 
 
@@ -36,9 +40,11 @@ public class Movie extends IdentifiableEntity {
     private String imageAddress;
 
     @Column(name = "title", nullable = false)
+    @NotEmpty
     private String title;
 
     @Column(name = "create_year", nullable = false)
+    @NotNull
     private Integer createYear;
 
     @Enumerated(EnumType.STRING)
@@ -55,6 +61,7 @@ public class Movie extends IdentifiableEntity {
 
     @ManyToOne
     @JoinColumn(name = "director_id", nullable = false)
+    @NotNull
     private Person director;
 
     @ManyToMany

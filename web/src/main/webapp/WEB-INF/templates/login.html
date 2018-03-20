@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <title>Login page</title>
+</head>
+<body>
+<div >
+    <ul >
+<li ><a  th:href="@{${url}(language=en_US)}">en</a></li>
+<li ><a  th:href="@{${url}(language=ru_RU)}">ru</a></li>
+    </ul>
+</div>
+    <form th:action="@{/login}" method="post">
+        <div class="form-group">
+        <label for="username" th:text=" #{login.username}">Username: </label>
+        <input class="form-control" type="text" name="user" id="username"><br>
+        <label for="password" th:text=" #{login.password}">Password: </label>
+        <input class="form-control" type="password" name="pass" id="password"><br>
+        <button class="btn btn-success" type="submit" th:text=" #{login.login}">Login</button>
+        </div>
+    </form>
+    <a class="btn btn-success" type="button" th:href="@{/login/registration}" th:text=" #{login.registration}">Registration</a>
+</body>
+</html>
+

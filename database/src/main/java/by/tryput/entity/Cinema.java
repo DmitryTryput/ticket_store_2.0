@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -22,6 +23,7 @@ public class Cinema extends IdentifiableEntity {
 
     @Column(name = "title", nullable = false,
     unique = true)
+    @NotEmpty
     private String title;
 
     @OneToMany(mappedBy = "cinema")

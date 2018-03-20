@@ -21,10 +21,6 @@ public class CommonServiceImpl implements CommonService {
     @Autowired
     private MovieRepository movieRepository;
 
-    public Iterable<Movie> findAll() {
-        return movieRepository.findAll();
-    }
-
     @Override
     public List<Country> getAllCountries() {
         return Arrays.asList(Country.values());

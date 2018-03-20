@@ -12,6 +12,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.transaction.Transactional;
 
+import java.util.List;
+import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import static org.hamcrest.CoreMatchers.*;
@@ -68,5 +70,11 @@ public class TestCinemaRepository {
         cinemaRepository.delete(deletedCinema);
         Cinema deleted = cinemaRepository.findOne(1L);
         assertThat(deleted, equalTo(null));
+    }
+
+    @Test
+    public void testFindAll() {
+        Set<Cinema> allWithCinemaHalls = cinemaRepository.findAllWithCinemaHalls();
+        allWithCinemaHalls.forEach(System.out::println);
     }
 }

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add cinema</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>
+<div th:insert="~{header :: adm-head}"></div>
+<div th:insert="~{header :: head}"></div>
+
+<form th:action="@{/add-cinema}" method="post" th:object="${cinema}">
+
+
+    <div class="form-group">
+        <label for="title" >Название кинотеатра:</label>
+        <input th:text="${cinema.title}" class="form-control" id="title" th:field="*{title}" >
+    </div>
+    <button class="btn btn-success">Сохранить</button>
+</form>
+</body>
+</html>

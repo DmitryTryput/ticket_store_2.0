@@ -2,12 +2,15 @@ package by.tryput.controller;
 
 import by.tryput.entity.Country;
 import by.tryput.entity.Movie;
+import by.tryput.entity.Person;
 import by.tryput.services.CommonService;
+import by.tryput.services.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.HashMap;
@@ -16,7 +19,7 @@ import java.util.Map;
 
 
 @Controller
-public class FilterController {
+public class MovieController {
 
     private HashMap<String, Object> filterParameters = new HashMap<>();
     private HashMap<String, Integer> paginationParameters = new HashMap<>();
@@ -26,6 +29,9 @@ public class FilterController {
 
     @Autowired
     private CommonService commonService;
+
+    @Autowired
+    private MovieService movieService;
 
     @ModelAttribute("countries")
     public List<Country> allCountries() {
@@ -37,7 +43,7 @@ public class FilterController {
         return new Movie();
     }
 
-    @GetMapping("/filter")
+    @GetMapping("/movies")
     public String start(Model model, Integer page) {
         paginationParameters.put("page", page == null ? startPage : page);
         paginationParameters.put("elements", elementsPerPage);
@@ -48,10 +54,10 @@ public class FilterController {
             System.out.println(v.size());
             System.out.println(k);
         });
-        return "/filter";
+        return "movies";
     }
 
-    @PostMapping("/filter")
+    @PostMapping("/movies")
     public String result(Movie movie, Model model) {
         paginationParameters.put("page", startPage);
         filterParameters.put("title", movie.getTitle().equals("") ? null
@@ -63,6 +69,13 @@ public class FilterController {
             model.addAttribute("movies", v);
             model.addAttribute("pages", k);
         });
-        return "/filter";
+        return "movies";
+    }
+
+    @GetMapping("/movies/{id}")
+    public String showEmployeePage(@PathVariable("id") Long id, Model model) {
+        Movie movie = movieService.findById(id);
+        model.addAttribute("movie", movie);
+        return "movie";
     }
 }

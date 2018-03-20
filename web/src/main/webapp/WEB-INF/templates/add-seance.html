@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <title>Add seance</title>
+</head>
+<body>
+<div th:insert="~{header :: adm-head}"></div>
+<div th:insert="~{header :: head}"></div>
+
+<form th:action="@{/add-seance}" method="post" th:object="${seance}">
+
+    <div class="form-group">
+        <label for="cinemaHall">Кинозал:</label>
+        <select id="cinemaHall" class="form-control" th:field="*{cinemaHall.id}">
+            <option  th:each="cinemahall : ${allCinemaHalls}"
+                     th:text="${cinemahall.cinema.getTitle()}  + ' ' + ${cinemahall.title}"
+                     th:value="${cinemahall.id}"
+            >
+            </option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="movie">Фильм:</label>
+        <select id="movie" class="form-control" th:field="*{movie.id}">
+            <option  th:each="movie : ${allMovies}"
+                     th:text="${movie.getTitle()}"
+                     th:value="${movie.id}"
+            >
+            </option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="seanceDate" >Дата:</label>
+        <input type="date" th:text="${seance.seanceDate}" class="form-control" id="seanceDate" th:field="*{seanceDate}" >
+    </div>
+
+    <div class="form-group">
+        <label for="seanceTime" >Время:</label>
+        <input type="time" th:text="${seance.seanceTime}" class="form-control" id="seanceTime" th:field="*{seanceTime}" >
+    </div>
+
+    <div class="form-group">
+        <label for="price" >Цена:</label>
+        <input type="number" required step="any" min="0" th:text="${seance.price}" class="form-control" id="price" th:field="*{price}" >
+    </div>
+
+    <button class="btn btn-success">Сохранить</button>
+</form>
+</body>
+</html>

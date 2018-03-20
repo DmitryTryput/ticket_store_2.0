@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <title>Person</title>
+</head>
+<body>
+<div th:insert="~{header :: adm-head}"></div>
+<div th:insert="~{header :: head}"></div>
+
+<form th:action="@{/add-person}" method="post" th:object="${person}">
+
+
+    <div class="form-group">
+        <label for="firstName" >Имя:</label>
+        <input th:text="${person.fullName.firstName}" class="form-control" id="firstName" th:field="*{fullName.firstName}" >
+    </div>
+    <div class="form-group">
+        <label for="lastName" >Фамилия:</label>
+        <input th:text="${person.fullName.lastName}" class="form-control" id="lastName" th:field="*{fullName.lastName}" >
+    </div>
+
+    <div class="form-group">
+        <label for="imageAddress" >Адресс изображения:</label>
+        <input th:text="${person.imageAddress}" class="form-control" id="imageAddress" th:field="*{imageAddress}" >
+    </div>
+
+    <div class="form-group">
+        <label for="dateOfBirth" >Дата рождения:</label>
+        <input type="date" th:date="${person.dateOfBirth}" class="form-control" id="dateOfBirth" th:field="*{dateOfBirth}" >
+    </div>
+
+    <div class="form-group">
+        <label for="country">Страна:</label>
+        <select id="country" class="form-control" th:field="*{country}">
+            <option  th:each="country : ${allCountries}"
+                     th:text="${country.name()}"
+                     th:value="${country}"
+            >
+            </option>
+        </select>
+    </div>
+    <button class="btn btn-success">Сохранить</button>
+</form>
+</body>
+</html>

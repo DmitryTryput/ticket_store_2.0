@@ -12,6 +12,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @Configuration
 @EnableTransactionManagement
 @ComponentScan("by.tryput.services")
-@Import(PersistenceConfig.class)
+@Import(value = {PersistenceConfig.class, AspectConfig.class})
 public class ServiceConfig {
 }

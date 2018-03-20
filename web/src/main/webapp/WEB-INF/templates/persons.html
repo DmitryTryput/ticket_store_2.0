@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <title>Persons</title>
+</head>
+<body>
+<div th:insert="~{header :: adm-head}"></div>
+<div th:insert="~{header :: head}"></div>
+
+<p th:each="searchPerson : ${persons}">
+    <a  th:text="${searchPerson.fullName.firstName}
+ + ' ' +  ${searchPerson.fullName.lastName} "
+      th:href="@{|/persons/${searchPerson.id}|}"></a>
+</p>
+
+<a th:each=" page : ${#numbers.sequence(1,pages,1)}"
+   th:href="@{/persons(page=${page})}" th:text="${page} + ' '"> page </a>
+</body>
+</html>

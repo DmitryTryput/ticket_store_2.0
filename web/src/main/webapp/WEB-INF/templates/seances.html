@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <title>Seances</title>
+</head>
+<body>
+<div th:insert="~{header :: adm-head}"></div>
+<div th:insert="~{header :: head}"></div>
+
+
+<label>Кинотеатр: </label>
+<section th:each="cinema : ${cinemaSeances}" >
+    <p th:text="${cinema.title}"></p>
+        <ul >
+            <li th:each="hall: ${cinema.halls}" >
+                <p th:each="seance : ${hall.seances}" >
+                    <a   th:href="@{|/seances/${seance.id}|}"    th:text="${seance.getMovie().getTitle()}
+                                   + ' ' +   ${seance.getSeanceDate()} + ' ' + ${seance.getSeanceTime()}  "></a>
+                </p>
+            </li>
+        </ul>
+</section>
+</body>
+</html>
